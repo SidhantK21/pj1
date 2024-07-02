@@ -11,7 +11,16 @@ const app = new Hono<{
     header:string
 	}
 }>();
-app.use('/*',cors())
+const corsOptions = {
+	origin: 'https://pj1-delta.vercel.app/',
+	methods: ['GET', 'POST', 'PUT', 'DELETE'],
+	allowedHeaders: ['Content-Type', 'Authorization'],
+	optionsSuccessStatus: 200,
+  };
+  
+  // Use the CORS middleware
+  app.use(cors(corsOptions));
+  
 
 
 app.route('/api/v1/user',userRouter);
